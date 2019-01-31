@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const version = process.env.VERSION || 'v1';
+const port = process.env.PORT || 8000;
 
 const app = express();
 
@@ -19,7 +20,7 @@ MongoClient.connect(process.env.MONGODB_URI, (err, client) => {
   const db = client.db(process.env.MONGODB);
   routes(version, app, db);
 
-  app.listen(8000, () => {
-    console.log('Listening on 8000');
+  app.listen(port, () => {
+    console.log(`Listening on ${version}`);
   });               
 });
